@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nuoi-tam
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    volumes:
+      # Mount để có thể edit files mà không cần rebuild
+      - ./main.html:/usr/share/nginx/html/main.html
+      - ./img:/usr/share/nginx/html/img
+

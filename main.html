@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuôi Tao – Ultra Aesthetic Version</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap');
+
+  * {
+    scroll-behavior: smooth;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #1a0a2e, #16213e, #0f3460, #533483);
+    font-family: "Merriweather", "Georgia", serif;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.8;
+    font-size: 18px;
+  }
+
+  /* Loading Screen */
+  .loader {
+    display: none;
+  }
+
+  .loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .loader-content {
+    text-align: center;
+  }
+
+  .loader-spinner {
+    width: 80px;
+    height: 80px;
+    border: 5px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .loader-text {
+    font-size: 24px;
+    font-weight: 600;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Scroll Progress Bar */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, #8b5cf6, #6366f1, #ec4899, #f59e0b);
+    z-index: 9998;
+    transition: width 0.1s;
+    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.6);
+  }
+
+  /* Sticky Header */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.3);
+    transition: all 0.3s;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  header.scrolled {
+    padding: 15px 30px;
+    background: rgba(0,0,0,0.5);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.7);
+  }
+
+  @keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  header {
+    padding: 40px 30px;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+    font-size: 42px;
+    font-weight: 700;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    letter-spacing: -1px;
+    line-height: 1.2;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Fade in on scroll */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Advanced Animations */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+  }
+
+  @keyframes floatReverse {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(20px) rotate(-5deg);
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-10px);
+    }
+    75% {
+      transform: translateX(10px);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes rotateIn {
+    from {
+      opacity: 0;
+      transform: rotate(-180deg) scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+  }
+
+  @keyframes flip {
+    0% {
+      transform: perspective(400px) rotateY(0);
+    }
+    40% {
+      transform: perspective(400px) rotateY(90deg);
+    }
+    60% {
+      transform: perspective(400px) rotateY(90deg);
+    }
+    100% {
+      transform: perspective(400px) rotateY(0);
+    }
+  }
+
+  @keyframes wiggle {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(5deg);
+    }
+    75% {
+      transform: rotate(-5deg);
+    }
+  }
+
+  @keyframes textReveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Animation Classes */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-float-reverse {
+    animation: floatReverse 3s ease-in-out infinite;
+  }
+
+  .animate-bounce {
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .animate-rotate {
+    animation: rotate 3s linear infinite;
+  }
+
+  .animate-shake {
+    animation: shake 0.5s ease-in-out;
+  }
+
+  .animate-wiggle {
+    animation: wiggle 1s ease-in-out infinite;
+  }
+
+  .animate-slide-left {
+    animation: slideInLeft 0.8s ease-out;
+  }
+
+  .animate-slide-right {
+    animation: slideInRight 0.8s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideInUp 0.8s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideInDown 0.8s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out;
+  }
+
+  .animate-rotate-in {
+    animation: rotateIn 0.8s ease-out;
+  }
+
+  .animate-flip {
+    animation: flip 1s ease-in-out;
+  }
+
+  /* Stagger Animation */
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .stagger-item.visible {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .stagger-item:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-item:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-item:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-item:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-item:nth-child(5) { animation-delay: 0.5s; }
+  .stagger-item:nth-child(6) { animation-delay: 0.6s; }
+
+  .hero img {
+    width: 92%;
+    max-width: 1100px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 22px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease;
+  }
+
+  .hero img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 14px 45px rgba(0,0,0,0.35);
+  }
+
+  .hero h1 {
+    margin-top: 40px;
+    font-family: "Playfair Display", serif;
+    font-size: 52px;
+    font-weight: 700;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    line-height: 1.2;
+    letter-spacing: -1px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero p {
+    font-size: 20px;
+    max-width: 700px;
+    margin: 30px auto;
+    opacity: 0.92;
+    line-height: 1.8;
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .card {
+    width: 90%;
+    max-width: 750px;
+    margin: 60px auto;
+    padding: 60px 50px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
+    border-radius: 22px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    transition: box-shadow 0.3s ease;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    position: relative;
+    overflow: visible;
+    box-sizing: border-box;
+  }
+
+  .card:hover {
+    box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+  }
+
+  .card h2 {
+    font-family: "Playfair Display", serif;
+    font-size: 36px;
+    margin-bottom: 30px;
+    margin-top: 0;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #fff;
+    letter-spacing: -0.5px;
+    position: relative;
+    display: block;
+  }
+
+  .card h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  }
+
+  .card p {
+    font-size: 19px;
+    line-height: 1.9;
+    margin-bottom: 24px;
+    color: rgba(255,255,255,0.95);
+    text-align: justify;
+    text-justify: inter-word;
+    font-weight: 300;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  .card p:first-of-type {
+    font-size: 20px;
+  }
+
+  .card p:first-of-type {
+    position: relative;
+    overflow: visible;
+  }
+
+  .card p:first-of-type::first-letter {
+    font-family: "Playfair Display", serif;
+    font-size: 4.5em;
+    line-height: 0.75;
+    float: left;
+    padding-right: 10px;
+    padding-top: 6px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  .card ul {
+    margin: 30px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .card ul li {
+    font-size: 18px;
+    line-height: 2;
+    margin-bottom: 16px;
+    padding-left: 30px;
+    position: relative;
+    color: rgba(255,255,255,0.9);
+    text-align: left;
+  }
+
+  .card ul li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  .card strong {
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .card em {
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .card blockquote {
+    margin: 40px 0;
+    padding: 30px 40px 30px 50px;
+    border-left: 4px solid rgba(139, 92, 246, 0.6);
+    background: rgba(0,0,0,0.2);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.9);
+    position: relative;
+    overflow: visible;
+  }
+
+  .card blockquote::before {
+    content: '"';
+    font-family: "Playfair Display", serif;
+    font-size: 4em;
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    color: rgba(139, 92, 246, 0.3);
+    line-height: 1;
+    z-index: 0;
+  }
+
+  .card blockquote p {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 0;
+  }
+
+  .gallery {
+    margin-top: 25px;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(139, 92, 246, 0.5);
+    border-color: rgba(139, 92, 246, 0.5);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  .gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+    opacity: 0;
+    transition: 0.4s;
+  }
+
+  .gallery-item:hover::after {
+    opacity: 1;
+  }
+
+  .gallery-item .img-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: 0.4s;
+    z-index: 1;
+  }
+
+  .gallery-item:hover .img-caption {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Modal/Lightbox */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.98);
+    backdrop-filter: blur(10px);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .modal-content {
+    position: relative;
+    margin: auto;
+    margin-top: 5%;
+    max-width: 90%;
+    max-height: 85%;
+  }
+
+  @keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .modal-content img {
+    width: 100%;
+    height: auto;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 12px;
+  }
+
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    transition: 0.3s;
+  }
+
+  .close:hover {
+    color: #ff5e7e;
+    transform: rotate(90deg);
+  }
+
+  .image-section {
+    margin-top: 30px;
+  }
+
+  .image-section h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+
+  .image-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  .image-row img {
+    flex: 1;
+    min-width: 250px;
+    max-width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    transition: 0.4s;
+    cursor: pointer;
+    border: 2px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .image-row img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+    border-color: rgba(139, 92, 246, 0.5);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+  }
+
+  .feature-item {
+    background: rgba(0,0,0,0.3);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid rgba(139, 92, 246, 0.2);
+    position: relative;
+  }
+
+  .feature-item:hover {
+    background: rgba(0,0,0,0.5);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+  }
+
+  .feature-item .icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+  }
+
+  .feature-item h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .commitment-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .commitment-list li {
+    padding: 15px;
+    margin: 10px 0;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    border-left: 4px solid #f59e0b;
+    transition: border-color 0.3s ease;
+  }
+
+  .commitment-list li:hover {
+    border-left-color: #fbbf24;
+  }
+
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .comparison-item {
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .comparison-item.negative {
+    background: rgba(220, 38, 38, 0.2);
+    border: 2px solid rgba(220, 38, 38, 0.4);
+  }
+
+  .comparison-item.positive {
+    background: rgba(34, 197, 94, 0.2);
+    border: 2px solid rgba(34, 197, 94, 0.4);
+  }
+
+  .comparison-item ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .comparison-item ul li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+  }
+
+  .comparison-item.negative ul li::before {
+    content: '❌';
+    position: absolute;
+    left: 0;
+  }
+
+  .comparison-item.positive ul li::before {
+    content: '✅';
+    position: absolute;
+    left: 0;
+  }
+
+  .donate-section {
+    text-align: center;
+    padding: 30px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 20px;
+    margin-top: 20px;
+    border: 2px solid rgba(245, 158, 11, 0.3);
+  }
+
+  .qr-code {
+    width: 250px;
+    height: 250px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+
+  .donate-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1, #ec4899);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+  }
+
+  .donate-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+  }
+
+  .expense-chart {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .chart-item {
+    margin: 15px 0;
+  }
+
+  .chart-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .chart-bar {
+    height: 30px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .chart-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8b5cf6, #6366f1, #ec4899, #f59e0b);
+    border-radius: 15px;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  @keyframes shimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Back to Top Button */
+  .back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 999;
+    box-shadow: 0 5px 20px rgba(139, 92, 246, 0.5);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.7);
+  }
+
+  .back-to-top::before {
+    content: '↑';
+    font-size: 24px;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  /* Particle Background */
+  .particles {
+    display: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(139, 92, 246, 0.6);
+    border-radius: 50%;
+    animation: float 15s infinite;
+    box-shadow: 0 0 6px rgba(139, 92, 246, 0.8);
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(100vh) translateX(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) translateX(100px);
+      opacity: 0;
+    }
+  }
+
+  /* Typing Animation */
+  .typing {
+    overflow: hidden;
+    border-right: 3px solid #fff;
+    white-space: nowrap;
+    animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #fff; }
+  }
+
+  /* Glow Effect */
+  .glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 10px rgba(139, 92, 246, 0.5),
+                   0 0 20px rgba(139, 92, 246, 0.5),
+                   0 0 30px rgba(99, 102, 241, 0.5);
+    }
+    to {
+      text-shadow: 0 0 20px rgba(139, 92, 246, 0.8),
+                   0 0 30px rgba(99, 102, 241, 0.8),
+                   0 0 40px rgba(236, 72, 153, 0.8);
+    }
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px;
+    }
+
+    header {
+      font-size: 28px;
+      padding: 25px 20px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-top: 25px;
+    }
+
+    .hero p {
+      font-size: 17px;
+    }
+
+    .card {
+      padding: 40px 30px;
+      margin: 40px auto;
+    }
+
+    .card h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .card p {
+      font-size: 17px;
+      text-align: left;
+    }
+
+    .card p:first-of-type::first-letter {
+      font-size: 3.5em;
+    }
+
+    .card blockquote {
+      padding: 20px 25px;
+      font-size: 17px;
+      margin: 30px 0;
+    }
+
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+    
+    .image-row {
+      flex-direction: column;
+    }
+    
+    .image-row img {
+      width: 100%;
+      min-width: 100%;
+    }
+
+    .comparison {
+      grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Loading Screen -->
+<div class="loader" id="loader">
+  <div class="loader-content">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Đang tải Nuôi Tao...</div>
+  </div>
+</div>
+
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Particle Background -->
+<div class="particles" id="particles"></div>
+
+<header id="header">Nuôi Tao – Đẹp Như Anh Đẹp Trai</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="img/hero.jpg" alt="Ảnh anh đẹp trai hoặc ảnh dự án">
+  <h1 class="glow">Dự Án Nuôi Tao – Không Drama, Chỉ Có Đẳng Cấp</h1>
+  <p>Phiên bản web được nâng cấp aesthetic tối đa để phù hợp với độ đẹp trai, độ chịu chơi và độ cảm động của dự án.</p>
+</section>
+
+<!-- SCRIPT FEELING FUNNY -->
+<div class="card fade-in">
+  <h2>📜 Hành Trình Nuôi Tao</h2>
+
+  <p>Có những ngày tao tự hỏi: “Trên đời này, ai sẽ nuôi tao?”  
+  Rồi tao nhận ra: tao phải tự nuôi tao trước. Nhưng nếu tụi bây nuôi tao chung thì vui hơn.</p>
+
+  <p>Tao đã làm rất nhiều thứ khiến tao cũng bất ngờ:</p>
+  <ul>
+    <li>Nhường tô mì cuối cùng cho con mèo hàng xóm… dù nó nhìn tao như thằng lạ.</li>
+    <li>Đi bộ 3 cây số đưa áo khoác cho bạn, xong nó bảo “màu này xui”.</li>
+    <li>Trồng hành tím, gom lúa non, nuôi ước mơ… và nuôi thêm nỗi buồn bị bỏ seen.</li>
+    <li>Thức đến 3 giờ sáng, không phải vì deadline… mà vì coi meme.</li>
+    <li>Mở lòng nhưng lòng tao nhỏ… mở mạnh quá rơi mất.</li>
+  </ul>
+
+  <p>Nhưng tao vẫn cố gắng mỗi ngày để trở thành phiên bản tốt hơn…  
+  Để xứng đáng được tụi bây nuôi.</p>
+
+  <blockquote>
+    Vậy nên nếu tao có mệt mỏi, tụi bây nhớ nói: "Ê, ráng lên, tụi tao còn chưa nuôi mày xong mà."
+  </blockquote>
+
+  <p>Nhờ vậy tao sống tiếp liền.</p>
+</div>
+
+<!-- ABOUT PROJECT -->
+<div class="card fade-in">
+  <h2>🌟 Dự án là gì?</h2>
+  <p>Dự án "Nuôi Tao" là nơi nuôi dưỡng vibe đẹp, nuôi tiếng cười, nuôi sự dễ thương và… nuôi tao nói chung.  
+  Không drama, không toxic, chỉ có tình thương và sự chịu đựng.</p>
+  
+  <p>Đây không phải là một dự án từ thiện theo nghĩa truyền thống. Đây là một hành trình chia sẻ, một cách để kết nối những con người có cùng tinh thần hài hước và lòng tốt. Mỗi đồng tiền được gửi đi không chỉ là sự hỗ trợ, mà còn là một lời cảm ơn, một cách để nói rằng: "Tao thấy mày, tao hiểu mày, và tao muốn mày tiếp tục."</p>
+</div>
+
+<!-- WHY NUOI TAO -->
+<div class="card fade-in">
+  <h2>🎯 Tại Sao Nên Nuôi Tao?</h2>
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="icon">📊</div>
+      <h3>Sao Kê Realtime</h3>
+      <p>Cập nhật từng giây! Còn nhanh hơn cả tốc độ bạn chuyển tiền!</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">🔍</div>
+      <h3>Minh Bạch 300%</h3>
+      <p>Hơn cả 100%! Tao còn báo cáo cả việc mua ly trà sữa!</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">💸</div>
+      <h3>Chi Tiêu Hợp Lý</h3>
+      <p>Không mua xe hơi, nhà cửa. Chỉ ăn cơm với mì tôm thôi!</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">📱</div>
+      <h3>App Tracking</h3>
+      <p>Theo dõi 24/7 tao ăn gì, uống gì, đi đâu. Như "Big Brother" vậy!</p>
+    </div>
+  </div>
+</div>
+
+<!-- COMMITMENT -->
+<div class="card fade-in">
+  <h2>🎪 Cam Kết Vàng Của Tao:</h2>
+  <ul class="commitment-list">
+    <li><strong>Sao kê mỗi ngày:</strong> Cập nhật lúc 6h sáng, đều như vắt tranh! (Kể cả Chủ Nhật & Lễ)</li>
+    <li><strong>Không giấu giếm:</strong> Từ tô phở 50k đến hộp sữa chua 8k đều được ghi chép tỉ mỉ!</li>
+    <li><strong>Có hóa đơn chứng từ:</strong> Chụp hình bill, quét mã vạch, lưu biên lai đầy đủ!</li>
+    <li><strong>Video unboxing:</strong> Mở từng gói mì tôm live trên Facebook cho anh chị xem!</li>
+    <li><strong>Hotline 24/7:</strong> Gọi hỏi tao ăn gì bất cứ lúc nào, kể cả 3h sáng!</li>
+    <li><strong>Không block:</strong> Hỏi khó đến mấy cũng trả lời, không "đã xem" rồi im lặng!</li>
+  </ul>
+</div>
+
+<!-- COMPARISON -->
+<div class="card fade-in">
+  <h2>💰 So Sánh Với "Người Khác"</h2>
+  <div class="comparison">
+    <div class="comparison-item negative">
+      <h3>❌ Người Khác:</h3>
+      <ul>
+        <li>Sao kê sau 3 năm (hoặc không bao giờ)</li>
+        <li>File Excel blur mờ như ảnh ma</li>
+        <li>Số liệu "làm tròn" theo kiểu 1 + 1 = 3</li>
+        <li>Block người hỏi nhanh như chớp</li>
+      </ul>
+    </div>
+    <div class="comparison-item positive">
+      <h3>✅ Nuôi Tao:</h3>
+      <ul>
+        <li>Sao kê trước khi tiêu (để anh chị duyệt)</li>
+        <li>File Excel 4K Ultra HD, có chữ ký điện tử</li>
+        <li>Số liệu chính xác đến từng đồng</li>
+        <li>Trả lời inbox nhanh hơn cả chatbot</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- DONATE -->
+<div class="card fade-in">
+  <h2>💳 DONATE NGAY ĐI, NẾU BẠN ĐANG CƯỜI!</h2>
+  <div class="donate-section">
+    <p>Quét mã QR này để nuôi tao (và nhận bản sao kê ngay lập tức!)</p>
+    <div class="qr-code">📱</div>
+    <p style="margin-top: 15px; opacity: 0.8;">⚡ Chuyển xong là có mail tự động! ⚡</p>
+    <a href="https://buymeacoffee.com/nuoitoi.com" target="_blank" class="donate-link">🎁 TÔI MUỐN NUÔI BẠN!</a>
+  </div>
+</div>
+
+<!-- EXPENSE CHART -->
+<div class="card fade-in">
+  <h2>📈 Tao Sẽ Dùng Tiền Vào Đâu?</h2>
+  <div class="expense-chart">
+    <div class="chart-item">
+      <div class="chart-label">
+        <span>🍜 Ăn uống (Cơm, mì tôm, trứng, rau. KHÔNG có tôm hùm!)</span>
+        <span>40%</span>
+      </div>
+      <div class="chart-bar">
+        <div class="chart-fill" style="width: 40%;">40%</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">
+        <span>⚡ Điện nước internet (Để sao kê cho anh chị)</span>
+        <span>20%</span>
+      </div>
+      <div class="chart-bar">
+        <div class="chart-fill" style="width: 20%;">20%</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">
+        <span>🏠 Thuê nhà (Phòng trọ 15m², không phải penthouse)</span>
+        <span>15%</span>
+      </div>
+      <div class="chart-bar">
+        <div class="chart-fill" style="width: 15%;">15%</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">
+        <span>💊 Y tế (Thuốc cảm, vitamin C, khẩu trang)</span>
+        <span>10%</span>
+      </div>
+      <div class="chart-bar">
+        <div class="chart-fill" style="width: 10%;">10%</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">
+        <span>📚 Học tập nâng cao (Sách, khóa học online để sao kê tốt hơn)</span>
+        <span>10%</span>
+      </div>
+      <div class="chart-bar">
+        <div class="chart-fill" style="width: 10%;">10%</div>
+      </div>
+    </div>
+    <div class="chart-item">
+      <div class="chart-label">
+        <span>🎮 Giải trí (Netflix? Không! Chỉ Youtube miễn phí thôi!)</span>
+        <span>5%</span>
+      </div>
+      <div class="chart-bar">
+        <div class="chart-fill" style="width: 5%;">5%</div>
+      </div>
+    </div>
+  </div>
+  <p style="text-align: center; margin-top: 20px; opacity: 0.8;">📈 Biểu đồ chi tiết cập nhật hàng tuần trên website!</p>
+</div>
+
+<!-- MUSIC -->
+<div class="card fade-in">
+  <h2>🎶 Nhạc nền: Tôi Nuôi Cô – Châu Tinh Trì</h2>
+  <p>Bản nhạc huyền thoại – mở lên là nghe mùi cảm xúc bay ra.</p>
+
+  <div style="margin-top:20px;">
+    <iframe width="100%" height="315"
+      src="https://www.youtube.com/embed/aBAq6NWlEAk"
+      title="Tôi Nuôi Cô - Châu Tinh Trì"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="card fade-in">
+  <h2>📸 Bộ sưu tập hình ảnh</h2>
+  <p>Những khoảnh khắc đẹp trai và đáng nhớ trong hành trình nuôi tao.</p>
+
+  <div class="gallery">
+    <div class="gallery-item" onclick="openModal('img/portrait.jpg')">
+      <img src="img/portrait.jpg" alt="Chân dung đẹp trai">
+      <div class="img-caption">Chân dung đẹp trai</div>
+    </div>
+    <div class="gallery-item" onclick="openModal('img/graduation-group.jpg')">
+      <img src="img/graduation-group.jpg" alt="Lễ tốt nghiệp">
+      <div class="img-caption">Lễ tốt nghiệp cùng bạn bè</div>
+    </div>
+    <div class="gallery-item" onclick="openModal('img/graduation-solo.jpg')">
+      <img src="img/graduation-solo.jpg" alt="Tốt nghiệp cá nhân">
+      <div class="img-caption">Khoảnh khắc tốt nghiệp</div>
+    </div>
+    <div class="gallery-item" onclick="openModal('img/meme.jpg')">
+      <img src="img/meme.jpg" alt="Meme vui">
+      <div class="img-caption">Meme đỉnh cao</div>
+    </div>
+  </div>
+</div>
+
+<!-- IMAGE SECTIONS -->
+<div class="card fade-in">
+  <h2>🎓 Khoảnh khắc tốt nghiệp</h2>
+  <div class="image-section">
+    <div class="image-row">
+      <img src="img/graduation-group.jpg" alt="Nhóm tốt nghiệp" onclick="openModal('img/graduation-group.jpg')">
+      <img src="img/graduation-solo.jpg" alt="Tốt nghiệp cá nhân" onclick="openModal('img/graduation-solo.jpg')">
+    </div>
+    <p>Những ngày tháng đẹp nhất khi được tốt nghiệp, được nuôi lớn và được dạy khôn. Cảm ơn FPT University đã nuôi tao lớn!</p>
+  </div>
+</div>
+
+<div class="card fade-in">
+  <h2>🔥 Meme đỉnh cao</h2>
+  <div class="image-section">
+    <img src="img/meme.jpg" alt="Meme FPT" style="width: 100%; max-width: 800px; height: auto; border-radius: 18px; cursor: pointer; margin: 20px auto; display: block;" onclick="openModal('img/meme.jpg')">
+    <p style="text-align: center; margin-top: 15px;">"Giang hồ hiểm ác, nuôi tao lớn, dạy tao khôn" – Câu nói bất hủ từ FPT University.</p>
+  </div>
+</div>
+
+<!-- MESSAGE FROM HEART -->
+<div class="card fade-in">
+  <h2>🎤 Lời Nhắn Từ Trái Tim</h2>
+  <p style="font-size: 18px; line-height: 1.8;">
+    Trong thời đại mà <strong>"từ thiện"</strong> đã trở thành từ nhạy cảm, Tao xin khẳng định: <strong>HÃY NUÔI TAO!</strong>
+  </p>
+  <p style="font-size: 18px; line-height: 1.8; margin-top: 15px;">
+    Tao nghèo, tao cần tiền, nhưng tao <strong>KHÔNG MẤT LƯƠNG TÂM!</strong> Mỗi đồng tiền các bạn gửi, tao sẽ chi tiêu rõ ràng, minh bạch như bụng đói của tao vậy! 😭
+  </p>
+  <p style="font-size: 16px; margin-top: 20px; opacity: 0.8; font-style: italic;">
+    <em>P/S: Tao hứa sẽ không mua xe hơi bằng tiền donate. Vì... tao chưa có bằng lái! 🚗❌</em>
+  </p>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="card" style="background: rgba(0,0,0,0.5); border: 2px solid rgba(139, 92, 246, 0.3);">
+  <p style="text-align: center; opacity: 0.9; font-size: 14px;">
+    <strong>⚠️ DISCLAIMER:</strong> Đây là trang web mang tính chất <strong>HÀI HƯỚC</strong>. Mọi nội dung đều mang tính giải trí, không nhằm mục đích xúc phạm hay chỉ trích bất kỳ cá nhân/tổ chức nào.
+  </p>
+</div>
+
+<!-- Modal -->
+<div id="imageModal" class="modal" onclick="closeModal()">
+  <span class="close">&times;</span>
+  <div class="modal-content">
+    <img id="modalImage" src="" alt="Full size image">
+  </div>
+</div>
+
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTop"></div>
+
+<footer>© 2025 – Trang web aesthetic của anh đẹp trai</footer>
+
+<script>
+  // Loading Screen
+  window.addEventListener('load', function() {
+    const loader = document.getElementById('loader');
+    setTimeout(() => {
+      loader.classList.add('hidden');
+    }, 500);
+  });
+
+  // Scroll Progress Bar
+  window.addEventListener('scroll', function() {
+    const scrollProgress = document.getElementById('scrollProgress');
+    const scrollTop = window.pageYOffset;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    scrollProgress.style.width = scrollPercent + '%';
+  });
+
+  // Sticky Header
+  window.addEventListener('scroll', function() {
+    const header = document.getElementById('header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  // Back to Top Button
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  });
+
+  backToTop.addEventListener('click', function() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // Fade in on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-in').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Particle Background
+  function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 50;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 15 + 's';
+      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+  }
+
+  createParticles();
+
+  // Chart Animation - Disabled for better performance
+
+  // Modal Functions
+  function openModal(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.style.display = 'block';
+    modalImg.src = imageSrc;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modal when clicking outside image
+  document.getElementById('imageModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeModal();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+
+  // Prevent modal from closing when clicking on image
+  document.querySelector('.modal-content').addEventListener('click', function(e) {
+    e.stopPropagation();
+  });
+</script>
+
+</body>
+</html>

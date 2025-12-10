@@ -1,0 +1,43 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="redBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B0000;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#DC143C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF4500;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="faceLight" cx="30%" cy="30%">
+      <stop offset="0%" style="stop-color:#FFDBB3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E6C299;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#redBg)"/>
+  
+  <!-- Person silhouette -->
+  <g transform="translate(200, 50)">
+    <!-- Head -->
+    <ellipse cx="200" cy="180" rx="90" ry="110" fill="url(#faceLight)"/>
+    
+    <!-- Glasses -->
+    <rect x="130" y="160" width="60" height="35" rx="5" fill="none" stroke="#000" stroke-width="3"/>
+    <rect x="210" y="160" width="60" height="35" rx="5" fill="none" stroke="#000" stroke-width="3"/>
+    <line x1="190" y1="177" x2="210" y2="177" stroke="#000" stroke-width="2"/>
+    
+    <!-- Hair -->
+    <path d="M 110 120 Q 120 80, 140 90 Q 160 100, 180 95 Q 200 90, 220 95 Q 240 100, 260 90 Q 280 80, 290 120" 
+          fill="#1a1a1a" opacity="0.9"/>
+    
+    <!-- Body - Blazer -->
+    <rect x="120" y="280" width="160" height="200" fill="#000" rx="5"/>
+    <rect x="130" y="290" width="140" height="180" fill="#1a1a1a"/>
+    
+    <!-- Shirt collar -->
+    <polygon points="180,290 200,310 220,290" fill="#1a1a1a"/>
+    
+    <!-- Pocket square outline -->
+    <rect x="250" y="320" width="20" height="15" fill="none" stroke="#333" stroke-width="1" opacity="0.5"/>
+  </g>
+  
+  <!-- Watermark -->
+  <text x="720" y="50" font-family="Arial" font-size="20" fill="white" opacity="0.3">1X</text>
+</svg>
