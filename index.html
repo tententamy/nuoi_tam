@@ -6,8 +6,7 @@
 <title>Nuôi Tao – Ultra Aesthetic Version</title>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
   * {
     scroll-behavior: smooth;
@@ -17,15 +16,34 @@
     scroll-behavior: smooth;
   }
 
+  :root {
+    --bg-color: linear-gradient(135deg, #f5f1e8, #faf8f3, #fff8f0, #f9f6f0);
+    --text-color: #2c2c2c;
+    --card-bg: rgba(255,255,255,0.9);
+    --card-border: rgba(139, 92, 246, 0.2);
+    --header-bg: rgba(255,255,255,0.8);
+    --shadow: rgba(0,0,0,0.1);
+  }
+
+  body.dark-mode {
+    --bg-color: linear-gradient(135deg, #0f0f1e, #1a1a2e, #16213e, #0f3460);
+    --text-color: #e0e0e0;
+    --card-bg: rgba(0,0,0,0.6);
+    --card-border: rgba(139, 92, 246, 0.4);
+    --header-bg: rgba(0,0,0,0.7);
+    --shadow: rgba(0,0,0,0.5);
+  }
+
   body {
     margin: 0;
-    background: linear-gradient(135deg, #f5f1e8, #faf8f3, #fff8f0, #f9f6f0);
-    font-family: "Merriweather", "Georgia", serif;
-    color: #2c2c2c;
+    background: var(--bg-color);
+    font-family: "Roboto", sans-serif;
+    color: var(--text-color);
     overflow-x: hidden;
     min-height: 100vh;
     line-height: 1.8;
     font-size: 18px;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   /* Loading Screen */
@@ -81,6 +99,32 @@
     box-shadow: 0 2px 10px rgba(139, 92, 246, 0.6);
   }
 
+  /* Dark Mode Toggle */
+  .dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--card-border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 15px var(--shadow);
+    transition: all 0.3s ease;
+  }
+
+  .dark-mode-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px var(--shadow);
+  }
+
   /* Language Switcher */
   .language-switcher {
     position: fixed;
@@ -89,25 +133,25 @@
     z-index: 1000;
     display: flex;
     gap: 10px;
-    background: rgba(255,255,255,0.9);
+    background: var(--card-bg);
     backdrop-filter: blur(10px);
     padding: 8px 12px;
     border-radius: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px var(--shadow);
+    border: 1px solid var(--card-border);
   }
 
   .lang-btn {
     padding: 6px 12px;
     border: none;
     background: transparent;
-    color: #2c2c2c;
+    color: var(--text-color);
     cursor: pointer;
     border-radius: 15px;
     font-size: 13px;
     font-weight: 600;
     transition: all 0.3s ease;
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 
   .lang-btn:hover {
@@ -126,15 +170,15 @@
     top: 0;
     z-index: 100;
     backdrop-filter: blur(10px);
-    background: rgba(255,255,255,0.8);
+    background: var(--header-bg);
     transition: all 0.3s;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 20px var(--shadow);
   }
 
   header.scrolled {
     padding: 15px 30px;
-    background: rgba(255,255,255,0.95);
-    box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    background: var(--header-bg);
+    box-shadow: 0 4px 30px var(--shadow);
   }
 
   @keyframes gradientMove {
@@ -146,12 +190,12 @@
   header {
     padding: 40px 30px;
     text-align: center;
-    font-family: "Playfair Display", serif;
+    font-family: "Roboto", sans-serif;
     font-size: 42px;
     font-weight: 700;
-    color: #2c2c2c;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    letter-spacing: -1px;
+    color: var(--text-color);
+    text-shadow: 0 2px 5px var(--shadow);
+    letter-spacing: -0.5px;
     line-height: 1.2;
   }
 
@@ -444,30 +488,97 @@
   .stagger-item:nth-child(5) { animation-delay: 0.5s; }
   .stagger-item:nth-child(6) { animation-delay: 0.6s; }
 
-  .hero img {
+  .hero-image-container {
+    position: relative;
     width: 92%;
     max-width: 1100px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 22px;
+    cursor: pointer;
+  }
+
+  .hero-img-main {
+    width: 100%;
     height: 420px;
     object-fit: cover;
     border-radius: 22px;
     box-shadow: 0 10px 35px rgba(0,0,0,0.25);
-    transition: transform 0.3s ease;
+    transition: opacity 0.5s ease;
+    display: block;
+    position: relative;
+    z-index: 2;
   }
 
-  .hero img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 14px 45px rgba(0,0,0,0.35);
+  .hero-img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 22px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+  }
+
+  .hero-image-container:hover .hero-img-main {
+    opacity: 0;
+  }
+
+  .hero-image-container:hover .hero-img-hover {
+    opacity: 1;
+  }
+
+  .hero-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    border-radius: 22px;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  .hero-image-container:hover .hero-image-overlay {
+    opacity: 1;
+  }
+
+  .hero-image-text {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    padding: 20px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    font-family: "Roboto", sans-serif;
+    line-height: 1.4;
+  }
+
+  /* Eye zoom effect - approximate eye area */
+  .hero-image-container:hover img {
+    transform: scale(1.15) translateY(-5%);
+    transform-origin: center 40%;
   }
 
   .hero h1 {
     margin-top: 40px;
-    font-family: "Playfair Display", serif;
+    font-family: "Roboto", sans-serif;
     font-size: 52px;
     font-weight: 700;
-    color: #2c2c2c;
-    text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    color: var(--text-color);
+    text-shadow: 0 2px 5px var(--shadow);
     line-height: 1.2;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -480,7 +591,7 @@
     opacity: 0.9;
     line-height: 1.8;
     font-style: italic;
-    color: #4a4a4a;
+    color: var(--text-color);
   }
 
   .card {
@@ -488,30 +599,30 @@
     max-width: 750px;
     margin: 60px auto;
     padding: 60px 50px;
-    background: rgba(255,255,255,0.9);
+    background: var(--card-bg);
     backdrop-filter: blur(12px);
     border-radius: 22px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease;
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    box-shadow: 0 8px 25px var(--shadow);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+    border: 1px solid var(--card-border);
     position: relative;
     overflow: visible;
     box-sizing: border-box;
   }
 
   .card:hover {
-    box-shadow: 0 12px 35px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 12px 35px var(--shadow);
   }
 
   .card h2 {
-    font-family: "Playfair Display", serif;
+    font-family: "Roboto", sans-serif;
     font-size: 36px;
     margin-bottom: 30px;
     margin-top: 0;
     font-weight: 700;
     line-height: 1.3;
-    color: #2c2c2c;
-    letter-spacing: -0.5px;
+    color: var(--text-color);
+    letter-spacing: -0.3px;
     position: relative;
     display: block;
   }
@@ -530,7 +641,7 @@
     font-size: 19px;
     line-height: 1.9;
     margin-bottom: 24px;
-    color: #3a3a3a;
+    color: var(--text-color);
     text-align: justify;
     text-justify: inter-word;
     font-weight: 300;
@@ -538,26 +649,7 @@
     word-wrap: break-word;
   }
 
-  .card p:first-of-type {
-    font-size: 20px;
-  }
 
-  .card p:first-of-type {
-    position: relative;
-    overflow: visible;
-  }
-
-  .card p:first-of-type::first-letter {
-    font-family: "Playfair Display", serif;
-    font-size: 4.5em;
-    line-height: 0.75;
-    float: left;
-    padding-right: 10px;
-    padding-top: 6px;
-    color: #8b5cf6;
-    font-weight: 700;
-    margin-right: 6px;
-  }
 
   .card ul {
     margin: 30px 0;
@@ -571,7 +663,7 @@
     margin-bottom: 16px;
     padding-left: 30px;
     position: relative;
-    color: #3a3a3a;
+    color: var(--text-color);
     text-align: left;
   }
 
@@ -585,30 +677,31 @@
 
   .card strong {
     font-weight: 700;
-    color: #2c2c2c;
+    color: var(--text-color);
   }
 
   .card em {
     font-style: italic;
-    color: #4a4a4a;
+    color: var(--text-color);
+    opacity: 0.9;
   }
 
   .card blockquote {
     margin: 40px 0;
     padding: 30px 40px 30px 50px;
     border-left: 4px solid rgba(139, 92, 246, 0.6);
-    background: rgba(139, 92, 246, 0.05);
+    background: rgba(139, 92, 246, 0.1);
     font-style: italic;
     font-size: 20px;
     line-height: 1.8;
-    color: #3a3a3a;
+    color: var(--text-color);
     position: relative;
     overflow: visible;
   }
 
   .card blockquote::before {
     content: '"';
-    font-family: "Playfair Display", serif;
+    font-family: "Roboto", sans-serif;
     font-size: 4em;
     position: absolute;
     left: 15px;
@@ -795,28 +888,29 @@
   }
 
   .feature-item {
-    background: rgba(255,255,255,0.8);
+    background: var(--card-bg);
     padding: 25px;
     border-radius: 15px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid rgba(139, 92, 246, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    border: 2px solid var(--card-border);
     position: relative;
   }
 
   .feature-item:hover {
-    background: rgba(255,255,255,0.95);
+    background: var(--card-bg);
     border-color: rgba(139, 92, 246, 0.5);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+    box-shadow: 0 10px 30px var(--shadow);
   }
 
   .feature-item h3 {
-    color: #2c2c2c;
+    color: var(--text-color);
   }
 
   .feature-item p {
-    color: #4a4a4a;
+    color: var(--text-color);
+    opacity: 0.9;
   }
 
   .feature-item .icon {
@@ -838,11 +932,11 @@
   .commitment-list li {
     padding: 15px;
     margin: 10px 0;
-    background: rgba(255,255,255,0.6);
+    background: var(--card-bg);
     border-radius: 10px;
     border-left: 4px solid #f59e0b;
-    transition: border-color 0.3s ease;
-    color: #3a3a3a;
+    transition: border-color 0.3s ease, background 0.3s ease;
+    color: var(--text-color);
   }
 
   .commitment-list li:hover {
@@ -862,15 +956,15 @@
   }
 
   .comparison-item.negative {
-    background: rgba(220, 38, 38, 0.1);
+    background: rgba(220, 38, 38, 0.15);
     border: 2px solid rgba(220, 38, 38, 0.3);
-    color: #3a3a3a;
+    color: var(--text-color);
   }
 
   .comparison-item.positive {
-    background: rgba(34, 197, 94, 0.1);
+    background: rgba(34, 197, 94, 0.15);
     border: 2px solid rgba(34, 197, 94, 0.3);
-    color: #3a3a3a;
+    color: var(--text-color);
   }
 
   .comparison-item ul {
@@ -899,7 +993,7 @@
   .donate-section {
     text-align: center;
     padding: 30px;
-    background: rgba(255,255,255,0.7);
+    background: var(--card-bg);
     border-radius: 20px;
     margin-top: 20px;
     border: 2px solid rgba(245, 158, 11, 0.3);
@@ -913,8 +1007,8 @@
   }
 
   .donate-package {
-    background: rgba(255,255,255,0.9);
-    border: 2px solid rgba(139, 92, 246, 0.3);
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
     border-radius: 15px;
     padding: 25px 20px;
     cursor: pointer;
@@ -951,24 +1045,25 @@
   }
 
   .donate-package .amount {
-    font-family: "Playfair Display", serif;
+    font-family: "Roboto", sans-serif;
     font-size: 28px;
     font-weight: 700;
-    color: #2c2c2c;
+    color: var(--text-color);
     margin-bottom: 8px;
   }
 
   .donate-package .label {
     font-size: 14px;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--text-color);
+    opacity: 0.8;
+    letter-spacing: 0.5px;
     margin-bottom: 12px;
   }
 
   .donate-package .description {
     font-size: 13px;
-    color: #4a4a4a;
+    color: var(--text-color);
+    opacity: 0.9;
     line-height: 1.5;
     margin-top: 10px;
     min-height: 60px;
@@ -1001,7 +1096,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 5px 20px rgba(139, 92, 246, 0.5);
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto", sans-serif;
   }
 
   .donate-button:hover {
@@ -1018,7 +1113,7 @@
   .selected-amount {
     margin-top: 20px;
     font-size: 18px;
-    color: #3a3a3a;
+    color: var(--text-color);
     font-weight: 600;
   }
 
@@ -1031,13 +1126,13 @@
   .expense-chart {
     margin-top: 30px;
     padding: 20px;
-    background: rgba(255,255,255,0.6);
+    background: var(--card-bg);
     border-radius: 15px;
-    border: 1px solid rgba(139, 92, 246, 0.2);
+    border: 1px solid var(--card-border);
   }
 
   .chart-label {
-    color: #3a3a3a;
+    color: var(--text-color);
   }
 
   .chart-item {
@@ -1191,7 +1286,7 @@
   footer {
     text-align: center;
     padding: 40px;
-    color: #4a4a4a;
+    color: var(--text-color);
     opacity: 0.8;
   }
 
@@ -1229,9 +1324,6 @@
       text-align: left;
     }
 
-    .card p:first-of-type::first-letter {
-      font-size: 3.5em;
-    }
 
     .card blockquote {
       padding: 20px 25px;
@@ -1294,6 +1386,14 @@
       padding: 5px 10px;
       font-size: 11px;
     }
+
+    .dark-mode-toggle {
+      top: 10px;
+      left: 10px;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+    }
   }
 </style>
 </head>
@@ -1314,6 +1414,11 @@
 <!-- Particle Background -->
 <div class="particles" id="particles"></div>
 
+<!-- Dark Mode Toggle -->
+<div class="dark-mode-toggle" id="darkModeToggle" onclick="toggleDarkMode()">
+  🌙
+</div>
+
 <!-- Language Switcher -->
 <div class="language-switcher">
   <button class="lang-btn active" onclick="changeLanguage('vi')" data-lang="vi">🇻🇳 VI</button>
@@ -1325,7 +1430,13 @@
 
 <!-- HERO -->
 <section class="hero">
-  <img src="img/hero.jpg" alt="Ảnh anh đẹp trai hoặc ảnh dự án">
+  <div class="hero-image-container">
+    <img src="img/z7041586954298_83425216640bb10b23a1d218ec892227.jpg" alt="Ảnh anh đẹp trai hoặc ảnh dự án" class="hero-img-main">
+    <img src="img/z7315932356605_bdf0f5072f6e8fca404c4b15b5811432.jpg" alt="Ảnh nhìn mắt" class="hero-img-hover">
+    <div class="hero-image-overlay">
+      <div class="hero-image-text" data-i18n="hero.hover.text">Nuôi tao đi, tao đang nhìn mày đấy!</div>
+    </div>
+  </div>
   <h1 class="glow" data-i18n="hero.title">Dự Án Nuôi Tao – Không Drama, Chỉ Có Đẳng Cấp</h1>
   <p data-i18n="hero.subtitle">Phiên bản web được nâng cấp aesthetic tối đa để phù hợp với độ đẹp trai, độ chịu chơi và độ cảm động của dự án.</p>
 </section>
@@ -1835,6 +1946,7 @@
       header: 'Nuôi Tao – Đẹp Như Anh Đẹp Trai',
       'hero.title': 'Dự Án Nuôi Tao – Không Drama, Chỉ Có Đẳng Cấp',
       'hero.subtitle': 'Phiên bản web được nâng cấp aesthetic tối đa để phù hợp với độ đẹp trai, độ chịu chơi và độ cảm động của dự án.',
+      'hero.hover.text': 'Nuôi tao đi, tao đang nhìn mày đấy!',
       'journey.title': '📜 Hành Trình Nuôi Tao',
       'journey.p1': 'Có những ngày tao tự hỏi: "Trên đời này, ai sẽ nuôi tao?" Rồi tao nhận ra: tao phải tự nuôi tao trước. Nhưng nếu tụi bây nuôi tao chung thì vui hơn.',
       'journey.p2': 'Tao đã làm rất nhiều thứ khiến tao cũng bất ngờ:',
@@ -1882,11 +1994,11 @@
       'comparison.positive.li2': 'File Excel 4K Ultra HD, có chữ ký điện tử',
       'comparison.positive.li3': 'Số liệu chính xác đến từng đồng',
       'comparison.positive.li4': 'Trả lời inbox nhanh hơn cả chatbot',
-      'donate.title': '💳 DONATE NGAY ĐI, NẾU BẠN ĐANG CƯỜI!',
+      'donate.title': '💳 Donate ngay đi, nếu bạn đang cười!',
       'donate.subtitle': 'Chọn gói donate để nuôi tao (và nhận bản sao kê ngay lập tức!)',
       'donate.selected': 'Bạn đã chọn:',
       'donate.currency': 'VNĐ',
-      'donate.button': '💳 THANH TOÁN NGAY',
+      'donate.button': '💳 Thanh toán ngay',
       'donate.note': '⚡ Chuyển xong là có mail tự động! ⚡',
       'package.100k.label': 'Gói nhỏ',
       'package.100k.desc': '• 1 tô phở bò đầy đủ<br>• Sao kê chi tiết<br>• Cảm ơn trên Facebook',
@@ -1895,12 +2007,12 @@
       'package.500k.label': 'Gói lớn',
       'package.500k.desc': '• 1 tuần ăn uống đầy đủ<br>• Sao kê Excel 4K<br>• Shoutout trên Facebook',
       'package.1m.label': 'Gói VIP',
-      'package.1m.badge': 'HOT',
+      'package.1m.badge': 'Hot',
       'package.1m.desc': '• 1 tháng không lo đói<br>• Video cảm ơn cá nhân<br>• Được follow Instagram',
       'package.2m.label': 'Gói Premium',
       'package.2m.desc': '• 2 tháng nuôi dưỡng<br>• Live stream ăn uống<br>• Đặt tên cho món ăn',
       'package.5m.label': 'Gói Super',
-      'package.5m.badge': 'VIP',
+      'package.5m.badge': 'Vip',
       'package.5m.desc': '• 5 tháng tự do<br>• Video review từng bữa<br>• Được vote món ăn tiếp theo',
       'package.10m.label': 'Gói Ultra',
       'package.10m.desc': '• 10 tháng không lo<br>• Podcast "Nuôi Tao"<br>• Trở thành nhà tài trợ chính',
@@ -1930,27 +2042,28 @@
       'message.p1': 'Trong thời đại mà "từ thiện" đã trở thành từ nhạy cảm, Tao xin khẳng định: HÃY NUÔI TAO!',
       'message.p2': 'Tao nghèo, tao cần tiền, nhưng tao KHÔNG MẤT LƯƠNG TÂM! Mỗi đồng tiền các bạn gửi, tao sẽ chi tiêu rõ ràng, minh bạch như bụng đói của tao vậy! 😭',
       'message.p3': 'P/S: Tao hứa sẽ không mua xe hơi bằng tiền donate. Vì... tao chưa có bằng lái! 🚗❌',
-      'disclaimer.text': '⚠️ DISCLAIMER: Đây là trang web mang tính chất HÀI HƯỚC. Mọi nội dung đều mang tính giải trí, không nhằm mục đích xúc phạm hay chỉ trích bất kỳ cá nhân/tổ chức nào.'
+      'disclaimer.text': '⚠️ Disclaimer: Đây là trang web mang tính chất hài hước. Mọi nội dung đều mang tính giải trí, không nhằm mục đích xúc phạm hay chỉ trích bất kỳ cá nhân/tổ chức nào.'
     },
     en: {
-      header: 'Feed Me – As Handsome As I Am',
-      'hero.title': 'Feed Me Project – No Drama, Just Class',
+      header: 'Donate for Me – As Handsome As I Am',
+      'hero.title': 'Donate for Me Project – No Drama, Just Class',
       'hero.subtitle': 'An ultra-aesthetic web version that matches the handsomeness, generosity, and emotional depth of this project.',
+      'hero.hover.text': 'Donate for me, I\'m looking at you!',
       'journey.title': '📜 My Journey',
-      'journey.p1': 'Some days I wonder: "Who will feed me in this world?" Then I realize: I must feed myself first. But it would be more fun if you all feed me together.',
+      'journey.p1': 'Some days I wonder: "Who will support me in this world?" Then I realize: I must support myself first. But it would be more fun if you all donate for me together.',
       'journey.p2': 'I\'ve done many things that surprised even myself:',
       'journey.li1': 'Gave my last bowl of noodles to the neighbor\'s cat… even though it looked at me like a stranger.',
       'journey.li2': 'Walked 3 kilometers to give a jacket to a friend, then they said "this color is unlucky".',
       'journey.li3': 'Grew onions, collected young rice, nurtured dreams… and also nurtured the sadness of being left on read.',
       'journey.li4': 'Stayed up until 3 AM, not because of deadlines… but because of memes.',
       'journey.li5': 'Opened my heart but my heart is small… opened it too hard and it fell out.',
-      'journey.p3': 'But I still try every day to become a better version… To deserve being fed by you all.',
-      'journey.quote': 'So if I get tired, remember to say: "Hey, hang in there, we haven\'t finished feeding you yet."',
+      'journey.p3': 'But I still try every day to become a better version… To deserve your support.',
+      'journey.quote': 'So if I get tired, remember to say: "Hey, hang in there, we haven\'t finished supporting you yet."',
       'journey.p4': 'That\'s how I keep going.',
       'about.title': '🌟 What is this project?',
-      'about.p1': 'The "Feed Me" project is a place to nurture good vibes, laughter, cuteness, and… feed me in general. No drama, no toxicity, just love and tolerance.',
+      'about.p1': 'The "Donate for Me" project is a place to nurture good vibes, laughter, cuteness, and… support me in general. No drama, no toxicity, just love and tolerance.',
       'about.p2': 'This is not a charity project in the traditional sense. This is a journey of sharing, a way to connect people with the same sense of humor and kindness. Every dollar sent is not just support, but also a thank you, a way to say: "I see you, I understand you, and I want you to continue."',
-      'why.title': '🎯 Why Should You Feed Me?',
+      'why.title': '🎯 Why Should You Donate for Me?',
       'why.feature1.title': 'Real-time Statement',
       'why.feature1.desc': 'Updated every second! Faster than your transfer speed!',
       'why.feature2.title': '300% Transparency',
@@ -1978,16 +2091,16 @@
       'comparison.negative.li2': 'Blurry Excel files like ghost photos',
       'comparison.negative.li3': 'Data "rounded" like 1 + 1 = 3',
       'comparison.negative.li4': 'Block questioners faster than lightning',
-      'comparison.positive.title': '✅ Feed Me:',
+      'comparison.positive.title': '✅ Donate for Me:',
       'comparison.positive.li1': 'Statement before spending (for your approval)',
       'comparison.positive.li2': '4K Ultra HD Excel files with digital signatures',
       'comparison.positive.li3': 'Accurate data down to every cent',
       'comparison.positive.li4': 'Reply inbox faster than chatbots',
-      'donate.title': '💳 DONATE NOW, IF YOU\'RE LAUGHING!',
-      'donate.subtitle': 'Choose a donation package to feed me (and receive a statement immediately!)',
+      'donate.title': '💳 Donate now, if you\'re laughing!',
+      'donate.subtitle': 'Choose a donation package to support me (and receive a statement immediately!)',
       'donate.selected': 'You selected:',
       'donate.currency': 'VND',
-      'donate.button': '💳 PAY NOW',
+      'donate.button': '💳 Pay now',
       'donate.note': '⚡ Automatic email after transfer! ⚡',
       'package.100k.label': 'Small Package',
       'package.100k.desc': '• 1 full bowl of beef pho<br>• Detailed statement<br>• Thank you on Facebook',
@@ -1996,21 +2109,21 @@
       'package.500k.label': 'Large Package',
       'package.500k.desc': '• 1 week of full meals<br>• Excel 4K statement<br>• Shoutout on Facebook',
       'package.1m.label': 'VIP Package',
-      'package.1m.badge': 'HOT',
+      'package.1m.badge': 'Hot',
       'package.1m.desc': '• 1 month without worrying about hunger<br>• Personal thank you video<br>• Get followed on Instagram',
       'package.2m.label': 'Premium Package',
       'package.2m.desc': '• 2 months of nurturing<br>• Eating live stream<br>• Name a dish',
       'package.5m.label': 'Super Package',
-      'package.5m.badge': 'VIP',
+      'package.5m.badge': 'Vip',
       'package.5m.desc': '• 5 months of freedom<br>• Meal-by-meal review video<br>• Get to vote for the next dish',
       'package.10m.label': 'Ultra Package',
-      'package.10m.desc': '• 10 months without worrying<br>• Podcast "Feed Me"<br>• Become a main sponsor',
+      'package.10m.desc': '• 10 months without worrying<br>• Podcast "Donate for Me"<br>• Become a main sponsor',
       'package.20m.label': 'Mega Package',
       'package.20m.desc': '• 1 year of nurturing<br>• Video series "My Nurtured Life"<br>• Get to name the series',
       'package.50m.label': 'Legend Package',
       'package.50m.desc': '• 2 years without worrying<br>• Documentary about the journey<br>• Become a character in the story',
       'package.100m.label': 'God Package',
-      'package.100m.desc': '• Feed me for life<br>• Exclusive scriptwriter for you<br>• Become the official nurturer',
+      'package.100m.desc': '• Support me for life<br>• Exclusive scriptwriter for you<br>• Become the official sponsor',
       'expense.title': '📈 Where Will I Use The Money?',
       'expense.item1': '🍜 Food (Rice, instant noodles, eggs, vegetables. NO lobster!)',
       'expense.item2': '⚡ Utilities & Internet (To make statements for you)',
@@ -2022,36 +2135,37 @@
       'music.title': '🎶 Background Music: I Feed You – Stephen Chow',
       'music.desc': 'Legendary song – play it and feel the emotions flow.',
       'gallery.title': '📸 Photo Gallery',
-      'gallery.desc': 'Handsome and memorable moments in the journey of feeding me.',
+      'gallery.desc': 'Handsome and memorable moments in the journey of supporting me.',
       'graduation.title': '🎓 Graduation Moments',
       'graduation.desc': 'The most beautiful days when graduating, being raised and taught wisdom. Thanks FPT University for raising me!',
       'meme.title': '🔥 Top Meme',
       'meme.desc': '"The dangerous world raised me, taught me wisdom" – Immortal quote from FPT University.',
       'message.title': '🎤 Message From The Heart',
-      'message.p1': 'In an era where "charity" has become a sensitive word, I affirm: FEED ME!',
+      'message.p1': 'In an era where "charity" has become a sensitive word, I affirm: DONATE FOR ME!',
       'message.p2': 'I\'m poor, I need money, but I DON\'T LOSE MY CONSCIENCE! Every dollar you send, I will spend clearly and transparently like my hungry stomach! 😭',
       'message.p3': 'P/S: I promise not to buy a car with donation money. Because... I don\'t have a driver\'s license yet! 🚗❌',
-      'disclaimer.text': '⚠️ DISCLAIMER: This is a HUMOROUS website. All content is for entertainment purposes, not intended to offend or criticize any individual/organization.'
+      'disclaimer.text': '⚠️ Disclaimer: This is a humorous website. All content is for entertainment purposes, not intended to offend or criticize any individual/organization.'
     },
     zh: {
-      header: '养我 – 和我一样帅',
-      'hero.title': '养我项目 – 没有戏剧，只有格调',
+      header: '赞助我 – 和我一样帅',
+      'hero.title': '赞助我项目 – 没有戏剧，只有格调',
       'hero.subtitle': '一个超美学的网页版本，匹配这个项目的帅气、慷慨和情感深度。',
+      'hero.hover.text': '赞助我吧，我正在看着你呢！',
       'journey.title': '📜 我的旅程',
-      'journey.p1': '有些日子我会想："这个世界上谁会养我？"然后我意识到：我必须先养活自己。但如果你们一起养我会更有趣。',
+      'journey.p1': '有些日子我会想："这个世界上谁会支持我？"然后我意识到：我必须先支持自己。但如果你们一起赞助我会更有趣。',
       'journey.p2': '我做了很多连自己都惊讶的事情：',
       'journey.li1': '把最后一碗面给了邻居的猫……即使它像看陌生人一样看我。',
       'journey.li2': '走了3公里给朋友送外套，然后他们说"这个颜色不吉利"。',
       'journey.li3': '种洋葱，收集嫩米，培养梦想……也培养了被已读不回的悲伤。',
       'journey.li4': '熬夜到凌晨3点，不是因为截止日期……而是因为看表情包。',
       'journey.li5': '敞开心扉但我的心很小……开得太用力掉出来了。',
-      'journey.p3': '但我仍然每天努力成为更好的版本……值得被你们养。',
-      'journey.quote': '所以如果我累了，记住说："嘿，坚持住，我们还没养完你呢。"',
+      'journey.p3': '但我仍然每天努力成为更好的版本……值得你们的支持。',
+      'journey.quote': '所以如果我累了，记住说："嘿，坚持住，我们还没支持完你呢。"',
       'journey.p4': '这就是我继续前进的方式。',
       'about.title': '🌟 项目是什么？',
-      'about.p1': '"养我"项目是一个培养美好氛围、笑声、可爱的地方……总的来说就是养我。没有戏剧，没有毒性，只有爱和忍耐。',
+      'about.p1': '"赞助我"项目是一个培养美好氛围、笑声、可爱的地方……总的来说就是支持我。没有戏剧，没有毒性，只有爱和忍耐。',
       'about.p2': '这不是传统意义上的慈善项目。这是一个分享的旅程，一种连接具有相同幽默感和善良的人的方式。每一分钱不仅是支持，也是感谢，一种说："我看到你，我理解你，我希望你继续"的方式。',
-      'why.title': '🎯 为什么应该养我？',
+      'why.title': '🎯 为什么应该赞助我？',
       'why.feature1.title': '实时对账',
       'why.feature1.desc': '每秒更新！比你的转账速度还快！',
       'why.feature2.title': '300%透明度',
@@ -2079,13 +2193,13 @@
       'comparison.negative.li2': '模糊的Excel文件像鬼照片',
       'comparison.negative.li3': '数据"四舍五入"像1+1=3',
       'comparison.negative.li4': '拉黑提问者快如闪电',
-      'comparison.positive.title': '✅ 养我：',
+      'comparison.positive.title': '✅ 赞助我：',
       'comparison.positive.li1': '花钱前对账（让你们审批）',
       'comparison.positive.li2': '4K超高清Excel文件，有电子签名',
       'comparison.positive.li3': '数据精确到每一分钱',
       'comparison.positive.li4': '回复收件箱比聊天机器人还快',
       'donate.title': '💳 如果你在笑，现在就捐赠！',
-      'donate.subtitle': '选择捐赠套餐来养我（立即收到对账单！）',
+      'donate.subtitle': '选择捐赠套餐来支持我（立即收到对账单！）',
       'donate.selected': '您已选择：',
       'donate.currency': '越南盾',
       'donate.button': '💳 立即支付',
@@ -2102,16 +2216,16 @@
       'package.2m.label': '高级套餐',
       'package.2m.desc': '• 2个月抚养<br>• 吃饭直播<br>• 为菜品命名',
       'package.5m.label': '超级套餐',
-      'package.5m.badge': 'VIP',
+      'package.5m.badge': 'Vip',
       'package.5m.desc': '• 5个月自由<br>• 每餐评论视频<br>• 可以投票选择下一道菜',
       'package.10m.label': '超值套餐',
-      'package.10m.desc': '• 10个月不担心<br>• "养我"播客<br>• 成为主要赞助商',
+      'package.10m.desc': '• 10个月不担心<br>• "赞助我"播客<br>• 成为主要赞助商',
       'package.20m.label': '巨型套餐',
       'package.20m.desc': '• 1年抚养<br>• 视频系列"我被养的生活"<br>• 可以为系列命名',
       'package.50m.label': '传奇套餐',
       'package.50m.desc': '• 2年不担心<br>• 关于旅程的纪录片<br>• 成为故事中的角色',
       'package.100m.label': '神级套餐',
-      'package.100m.desc': '• 养我一辈子<br>• 专属编剧为您服务<br>• 成为正式抚养人',
+      'package.100m.desc': '• 支持我一辈子<br>• 专属编剧为您服务<br>• 成为正式赞助人',
       'expense.title': '📈 我会把钱用在哪里？',
       'expense.item1': '🍜 饮食（米饭、方便面、鸡蛋、蔬菜。没有龙虾！）',
       'expense.item2': '⚡ 水电网络（为了给你们做对账）',
@@ -2123,13 +2237,13 @@
       'music.title': '🎶 背景音乐：我养你 – 周星驰',
       'music.desc': '传奇歌曲 – 播放它，感受情感流淌。',
       'gallery.title': '📸 照片集',
-      'gallery.desc': '养我旅程中帅气而难忘的时刻。',
+      'gallery.desc': '支持我旅程中帅气而难忘的时刻。',
       'graduation.title': '🎓 毕业时刻',
-      'graduation.desc': '毕业、被抚养和教导智慧时最美好的日子。感谢FPT大学抚养我！',
+      'graduation.desc': '毕业、被支持和教导智慧时最美好的日子。感谢FPT大学支持我！',
       'meme.title': '🔥 顶级表情包',
-      'meme.desc': '"江湖险恶，养我长大，教我智慧" – 来自FPT大学的不朽名言。',
+      'meme.desc': '"江湖险恶，支持我长大，教我智慧" – 来自FPT大学的不朽名言。',
       'message.title': '🎤 来自内心的留言',
-      'message.p1': '在一个"慈善"已成为敏感词的时代，我肯定：养我吧！',
+      'message.p1': '在一个"慈善"已成为敏感词的时代，我肯定：赞助我吧！',
       'message.p2': '我穷，我需要钱，但我不失去良心！你们寄的每一分钱，我会像我的饥饿肚子一样清晰透明地花费！😭',
       'message.p3': '附言：我承诺不会用捐赠的钱买车。因为……我还没有驾照！🚗❌',
       'disclaimer.text': '⚠️ 免责声明：这是一个幽默网站。所有内容仅供娱乐，不旨在冒犯或批评任何个人/组织。'
@@ -2189,6 +2303,23 @@
   // Initialize language on page load
   const savedLang = localStorage.getItem('language') || 'vi';
   changeLanguage(savedLang);
+
+  // Dark Mode Toggle
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDark);
+    
+    const toggle = document.getElementById('darkModeToggle');
+    toggle.textContent = isDark ? '☀️' : '🌙';
+  }
+
+  // Initialize dark mode on page load
+  const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+  if (savedDarkMode) {
+    document.body.classList.add('dark-mode');
+    document.getElementById('darkModeToggle').textContent = '☀️';
+  }
 </script>
 
 </body>
