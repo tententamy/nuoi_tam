@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nuôi Tao – Ultra Aesthetic Version</title>
+<link rel="icon" type="image/jpeg" href="img/portrait.jpg">
+<link rel="apple-touch-icon" href="img/portrait.jpg">
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
@@ -171,14 +173,28 @@
     z-index: 100;
     backdrop-filter: blur(10px);
     background: var(--header-bg);
-    transition: all 0.3s;
+    transition: padding 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     box-shadow: 0 2px 20px var(--shadow);
+    will-change: padding, box-shadow;
   }
 
   header.scrolled {
     padding: 15px 30px;
     background: var(--header-bg);
     box-shadow: 0 4px 30px var(--shadow);
+  }
+
+  .header-icon {
+    display: inline-block;
+    font-size: 36px;
+    margin-right: 12px;
+    vertical-align: middle;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  header.scrolled .header-icon {
+    font-size: 28px;
+    margin-right: 10px;
   }
 
   @keyframes gradientMove {
@@ -245,6 +261,139 @@
     }
     50% {
       transform: translateY(-20px) rotate(5deg);
+    }
+  }
+
+  /* Floating Icons Background */
+  .floating-icons {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .floating-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: floatAround 20s infinite ease-in-out;
+  }
+
+  .floating-icon:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 15s;
+  }
+
+  .floating-icon:nth-child(2) {
+    left: 20%;
+    animation-delay: 2s;
+    animation-duration: 18s;
+  }
+
+  .floating-icon:nth-child(3) {
+    left: 30%;
+    animation-delay: 4s;
+    animation-duration: 22s;
+  }
+
+  .floating-icon:nth-child(4) {
+    left: 40%;
+    animation-delay: 1s;
+    animation-duration: 16s;
+  }
+
+  .floating-icon:nth-child(5) {
+    left: 50%;
+    animation-delay: 3s;
+    animation-duration: 19s;
+  }
+
+  .floating-icon:nth-child(6) {
+    left: 60%;
+    animation-delay: 5s;
+    animation-duration: 21s;
+  }
+
+  .floating-icon:nth-child(7) {
+    left: 70%;
+    animation-delay: 2.5s;
+    animation-duration: 17s;
+  }
+
+  .floating-icon:nth-child(8) {
+    left: 80%;
+    animation-delay: 4.5s;
+    animation-duration: 20s;
+  }
+
+  .floating-icon:nth-child(9) {
+    left: 90%;
+    animation-delay: 1.5s;
+    animation-duration: 23s;
+  }
+
+  .floating-icon:nth-child(10) {
+    left: 15%;
+    animation-delay: 6s;
+    animation-duration: 18s;
+  }
+
+  .floating-icon:nth-child(11) {
+    left: 25%;
+    animation-delay: 3.5s;
+    animation-duration: 16s;
+  }
+
+  .floating-icon:nth-child(12) {
+    left: 35%;
+    animation-delay: 5.5s;
+    animation-duration: 19s;
+  }
+
+  .floating-icon:nth-child(13) {
+    left: 45%;
+    animation-delay: 2s;
+    animation-duration: 21s;
+  }
+
+  .floating-icon:nth-child(14) {
+    left: 55%;
+    animation-delay: 4s;
+    animation-duration: 17s;
+  }
+
+  .floating-icon:nth-child(15) {
+    left: 65%;
+    animation-delay: 6.5s;
+    animation-duration: 22s;
+  }
+
+  @keyframes floatAround {
+    0% {
+      transform: translateY(100vh) rotate(0deg) scale(0.8);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-20vh) rotate(180deg) scale(1);
+      opacity: 0.4;
+    }
+    90% {
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(360deg) scale(0.8);
+      opacity: 0;
     }
   }
 
@@ -1411,6 +1560,25 @@
 <!-- Scroll Progress Bar -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
+<!-- Floating Icons Background -->
+<div class="floating-icons">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+  <img src="img/z7310655037858_518ac26a978c50d0e81cc1f42c3f2d5e.jpg" alt="Floating Icon" class="floating-icon">
+</div>
+
 <!-- Particle Background -->
 <div class="particles" id="particles"></div>
 
@@ -1426,7 +1594,7 @@
   <button class="lang-btn" onclick="changeLanguage('zh')" data-lang="zh">🇨🇳 中文</button>
 </div>
 
-<header id="header" data-i18n="header">Nuôi Tao – Đẹp Như Anh Đẹp Trai</header>
+<header id="header"><span class="header-icon">💎</span><span data-i18n="header">Nuôi Tao – Đẹp Như Anh Đẹp Trai</span></header>
 
 <!-- HERO -->
 <section class="hero">
@@ -1791,13 +1959,29 @@
     scrollProgress.style.width = scrollPercent + '%';
   });
 
-  // Sticky Header
-  window.addEventListener('scroll', function() {
+  // Sticky Header - Fixed rung giật khi scroll gần top
+  let lastScrollY = 0;
+  let ticking = false;
+  
+  function updateHeader() {
     const header = document.getElementById('header');
-    if (window.scrollY > 50) {
+    const scrollY = window.pageYOffset || window.scrollY;
+    
+    // Dùng threshold lớn hơn và kiểm tra direction để tránh rung giật
+    if (scrollY > 100) {
       header.classList.add('scrolled');
-    } else {
+    } else if (scrollY < 80) {
       header.classList.remove('scrolled');
+    }
+    
+    lastScrollY = scrollY;
+    ticking = false;
+  }
+  
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
     }
   });
 
